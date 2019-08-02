@@ -4,6 +4,7 @@ import SchoolAPIService from "../services/SchoolAPIService";
 import Pagination from "../components/Pagination";
 import Table from "../components/Table";
 import SchoolConstant from "../constants/SchoolConstant";
+import SearchService from "../services/SearchService";
 // import { toast } from "react-toastify";
 
 const SchoolPage = props => {
@@ -62,16 +63,14 @@ const SchoolPage = props => {
     setCurrentPage(1);
   };
 
-  const filteredSchools = schools.filter(school =>
-    school.label.toLowerCase().includes(search.toLowerCase())
-  );
+  const filteredSchools = SearchService.searchSchool(schools, search);
 
   const handlePageChange = page => {
     setCurrentPage(page);
   };
 
-  const totalPages = Math.ceil(totalItems / itemPerPage);
-  const pages = [...Array(totalPages).keys()];
+  // const totalPages = Math.ceil(totalItems / itemPerPage);
+  // const pages = [...Array(totalPages).keys()];
 
   const paginatedSchools = Pagination.getDatas(
     filteredSchools,
@@ -93,8 +92,8 @@ const SchoolPage = props => {
       </div>
       <Table items={paginatedSchools} columns={SchoolConstant.getColumns()} />
       <Pagination
-        pages={pages}
-        totalPages={totalPages}
+        itemPerPage={itemPerPage}
+        totalItems={filteredSchools.length}
         currentPage={currentPage}
         onPageChange={handlePageChange}
       />

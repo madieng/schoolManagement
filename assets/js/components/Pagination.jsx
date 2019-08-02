@@ -1,6 +1,8 @@
 import React from "react";
 
-const Pagination = ({ pages, totalPages, currentPage, onPageChange }) => {
+const Pagination = ({ itemPerPage, totalItems, currentPage, onPageChange }) => {
+  const totalPages = Math.ceil(totalItems / itemPerPage);
+  const pages = [...Array(totalPages).keys()];
   return (
     <div>
       <div
