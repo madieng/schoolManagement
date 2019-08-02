@@ -5,7 +5,7 @@ import DashboardPage from "./pages/DashboardPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import NavbarTop from "./components/NarbarTop";
 import NavbarLeft from "./components/NavbarLeft";
-import Schools from "./components/Schools";
+import SchoolPage from "./pages/SchoolPage";
 
 require("../css/bootstrap.min.css");
 require("../css/app.scss");
@@ -21,7 +21,7 @@ const App = props => {
           <NavbarLeft />
           <main role="main" className="col-md-9 ml-sm-auto col-lg-10 px-4">
             <Switch>
-              <Route path="/admin/schools" component={Schools} />
+              <Route path="/admin/schools" component={SchoolPage} />
               <Route path="/admin" component={DashboardPage} />
               <Route component={NotFoundPage} />
             </Switch>

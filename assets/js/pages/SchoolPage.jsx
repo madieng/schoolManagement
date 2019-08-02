@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import moment from "moment";
-import SchoolsAPI from "./../services/schoolsAPI";
+import SchoolAPI from "../services/SchoolAPI";
+import Pagination from "../components/Pagination";
 // import { toast } from "react-toastify";
 
-const Schools = props => {
+const SchoolPage = props => {
   const [schools, setSchools] = useState([]);
   const [totalItems, setTotalItems] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1);
   const itemPerPage = 10;
 
   /**
@@ -20,9 +22,10 @@ const Schools = props => {
    */
   const findAll = async () => {
     try {
-      const response = await SchoolsAPI.findAll().then(schools => schools.data);
+      const response = await SchoolAPI.findAll().then(schools => schools.data);
       setSchools(response["hydra:member"]);
       setTotalItems(response["hydra:totalItems"]);
+      setCurrentPage(1);
     } catch (error) {
       console.log("[ ERROR ]", error);
       //   toast.error(
@@ -35,7 +38,7 @@ const Schools = props => {
     const originalSchools = [...schools];
     const newSchools = schools.filter(school => school.id !== id);
     try {
-      const response = await SchoolsAPI.remove(id).then(response => response);
+      const response = await SchoolAPI.remove(id).then(response => response);
       setSchools(newSchools);
       //   toast.success("L'école a été supprimée avec succés.");
     } catch (error) {
@@ -53,8 +56,19 @@ const Schools = props => {
    */
   const dateFormat = date => moment(date).format("DD/MM/YYYY");
 
-  const pages = [...Array(Math.ceil(totalItems / itemPerPage)).keys()];
-  console.log(pages);
+  const handlePageChange = page => {
+    setCurrentPage(page);
+  };
+
+  const paginatedSchools = Pagination.getDatas(
+    schools,
+    currentPage,
+    itemPerPage
+  );
+
+  const totalPages = Math.ceil(totalItems / itemPerPage);
+  const pages = [...Array(totalPages).keys()];
+
   return (
     <>
       <h1 className="h2">Listes des écoles</h1>
@@ -70,7 +84,7 @@ const Schools = props => {
           </tr>
         </thead>
         <tbody>
-          {schools.map(school => (
+          {paginatedSchools.map(school => (
             <tr key={school.id}>
               <td>{school.id}</td>
               <td>{school.label}</td>
@@ -95,27 +109,14 @@ const Schools = props => {
           ))}
         </tbody>
       </table>
-      <div>
-        <div
-          className="btn-toolbar"
-          role="toolbar"
-          aria-label="Toolbar with button groups"
-        >
-          <div className="btn-group mr-2" role="group" aria-label="First group">
-            {pages.map(page => (
-              <button
-                key={page + 1}
-                type="button"
-                className="btn btn-secondary"
-              >
-                {page + 1}
-              </button>
-            ))}
-          </div>
-        </div>
-      </div>
+      <Pagination
+        pages={pages}
+        totalPages={totalPages}
+        currentPage={currentPage}
+        onPageChange={handlePageChange}
+      />
     </>
   );
 };
 
-export default Schools;
+export default SchoolPage;
