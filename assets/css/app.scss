@@ -1,3 +1,19 @@
-// body {
-//   background-color: red;
-// }
+.background-none {
+  background: none;
+  box-shadow: none;
+}
+h1.h2 {
+  width: 100%;
+}
+.form-group {
+  width: 100%;
+}
+.bs-docs-section {
+  margin: 10px;
+}
+
+.dashboard .card {
+  max-width: 20rem;
+  display: inline-block;
+  margin-right: 2rem;
+}

@@ -1,15 +1,13 @@
-import React, { useState, useEffect } from "react";
-import moment from "moment";
-import SchoolAPIService from "../services/SchoolAPIService";
+import React, { useEffect, useState } from "react";
 import Pagination from "../components/Pagination";
-import Table from "../components/Table";
-import SchoolConstant from "../constants/SchoolConstant";
+import SchoolAPIService from "../services/SchoolAPIService";
 import SearchService from "../services/SearchService";
+import DateService from "../services/DateService";
 // import { toast } from "react-toastify";
 
 const SchoolPage = props => {
   const [schools, setSchools] = useState([]);
-  const [totalItems, setTotalItems] = useState(0);
+  // const [totalItems, setTotalItems] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [search, setSearch] = useState("");
   const itemPerPage = 10;
@@ -30,7 +28,7 @@ const SchoolPage = props => {
         schools => schools.data
       );
       setSchools(response["hydra:member"]);
-      setTotalItems(response["hydra:totalItems"]);
+      // setTotalItems(response["hydra:totalItems"]);
       setCurrentPage(1);
     } catch (error) {
       console.log("[ ERROR ]", error);
@@ -90,7 +88,41 @@ const SchoolPage = props => {
           onChange={handleChange}
         />
       </div>
-      <Table items={paginatedSchools} columns={SchoolConstant.getColumns()} />
+      <table className="table table-bordered">
+        <thead>
+          <tr>
+            <th>#Id</th>
+            <th>libelle</th>
+            <th>Date de création</th>
+            <th>Pays</th>
+            <th>Ville</th>
+            <th />
+          </tr>
+        </thead>
+        <tbody>
+          {paginatedSchools.map(school => (
+            <tr key={school.id}>
+              <td>{school.id}</td>
+              <td>{school.label}</td>
+              <td>{DateService.dateFormat(school.createdAt)}</td>
+              <td>{school.country.label}</td>
+              <td>{school.city}</td>
+              <td className="text-center">
+                <button type="button" className="btn btn-warning btn-sm mr-2">
+                  Modifier
+                </button>
+                <button
+                  onClick={() => handleRemove(school.id)}
+                  type="button"
+                  className="btn btn-danger btn-sm"
+                >
+                  Supprimer
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
       <Pagination
         itemPerPage={itemPerPage}
         totalItems={filteredSchools.length}

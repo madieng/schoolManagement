@@ -20,13 +20,13 @@ class Country
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
-     * @Groups({"country_read"})
+     * @Groups({"country_read", "school_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"country_read"})
+     * @Groups({"country_read", "school_read"})
      */
     private $label;
 

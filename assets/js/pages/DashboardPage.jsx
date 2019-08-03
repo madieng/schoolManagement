@@ -2,21 +2,87 @@ import React from "react";
 require("../../css/dashboard.css");
 const DashboardPage = props => {
   return (
-    <div className="justify-content-between align-items-center pt-3 pb-2 mb-3 border-bottom">
-      <h1 className="h2">Dashboard</h1>
-      <div className="row my-4 w-100 p-10">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero eum ullam
-        dolorem minus numquam illum possimus expedita voluptate quia explicabo
-        magni optio voluptatibus, culpa, quasi excepturi, obcaecati earum
-        reiciendis eius? Assumenda eligendi a corporis, maxime, blanditiis
-        delectus doloremque dignissimos, aperiam totam quos ipsum veniam velit.
-        Sequi voluptates iusto ad, non ipsum veniam qui ipsa quaerat, totam
-        fugit aperiam, maxime asperiores. Vel debitis possimus quod! Eius
-        excepturi repudiandae dolores veniam fugit quo provident perferendis
-        voluptatibus ratione ullam atque animi harum quidem reiciendis ab vitae
-        sequi adipisci possimus, itaque modi commodi magnam. Voluptatem
-        cupiditate repellendus aliquid? Odio maiores placeat hic dolor
-        exercitationem nesciunt tenetur dignissimos molestiae.
+    <div className="dashboard justify-content-between align-items-center border-bottom w-100">
+      <h1 className="h2">&nbsp;</h1>
+      <div className="card border-primary mb-3">
+        <div className="card-header">Header</div>
+        <div className="card-body">
+          <h4 className="card-title">Primary card title</h4>
+          <p className="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+        </div>
+      </div>
+      <div className="card border-secondary mb-3">
+        <div className="card-header">Header</div>
+        <div className="card-body">
+          <h4 className="card-title">Secondary card title</h4>
+          <p className="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+        </div>
+      </div>
+      <div className="card border-success mb-3">
+        <div className="card-header">Header</div>
+        <div className="card-body">
+          <h4 className="card-title">Success card title</h4>
+          <p className="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+        </div>
+      </div>
+      <div className="card border-danger mb-3">
+        <div className="card-header">Header</div>
+        <div className="card-body">
+          <h4 className="card-title">Danger card title</h4>
+          <p className="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+        </div>
+      </div>
+      <div className="card border-warning mb-3">
+        <div className="card-header">Header</div>
+        <div className="card-body">
+          <h4 className="card-title">Warning card title</h4>
+          <p className="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+        </div>
+      </div>
+      <div className="card border-info mb-3">
+        <div className="card-header">Header</div>
+        <div className="card-body">
+          <h4 className="card-title">Info card title</h4>
+          <p className="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+        </div>
+      </div>
+      <div className="card border-light mb-3">
+        <div className="card-header">Header</div>
+        <div className="card-body">
+          <h4 className="card-title">Light card title</h4>
+          <p className="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+        </div>
+      </div>
+      <div className="card border-dark mb-3">
+        <div className="card-header">Header</div>
+        <div className="card-body">
+          <h4 className="card-title">Dark card title</h4>
+          <p className="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+        </div>
       </div>
     </div>
   );

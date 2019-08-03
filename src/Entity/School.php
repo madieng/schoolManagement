@@ -2,11 +2,14 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *  normalizationContext={"groups"={"school_read"}}
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\SchoolRepository")
  */
 class School
@@ -15,36 +18,43 @@ class School
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"school_read"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"school_read"})
      */
     private $label;
 
     /**
      * @ORM\Column(type="datetime", nullable=true)
+     * @Groups({"school_read"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="text", nullable=true)
+     * @Groups({"school_read"})
      */
     private $description;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"school_read"})
      */
     private $address;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"school_read"})
      */
     private $city;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Country", inversedBy="schools")
+     * @Groups({"school_read"})
      */
     private $country;
 
