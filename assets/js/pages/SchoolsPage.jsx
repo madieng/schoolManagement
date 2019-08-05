@@ -5,7 +5,7 @@ import SearchService from "../services/SearchService";
 import DateService from "../services/DateService";
 // import { toast } from "react-toastify";
 
-const SchoolPage = props => {
+const SchoolsPage = props => {
   const [schools, setSchools] = useState([]);
   // const [totalItems, setTotalItems] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
@@ -133,4 +133,4 @@ const SchoolPage = props => {
   );
 };
 
-export default SchoolPage;
+export default SchoolsPage;

@@ -2,10 +2,11 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import AuthAPIService from "../services/AuthAPIService";
 
-const NavbarTop = ({ isAuthenticated, onLogout }) => {
+const Navbar = ({ isAuthenticated, onLogout, history }) => {
   const handleLogout = () => {
     AuthAPIService.logout();
     onLogout(false);
+    history.replace("/login");
   };
 
   return (
@@ -93,4 +94,4 @@ const NavbarTop = ({ isAuthenticated, onLogout }) => {
   );
 };
 
-export default NavbarTop;
+export default Navbar;
